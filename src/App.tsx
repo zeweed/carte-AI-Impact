@@ -5,11 +5,11 @@ type CardRank = 'J' | 'Q' | 'K' | 'A' | 'Joker';
 const suits = ['♠', '♥', '♦', '♣'];
 
 const ranksConfig: Record<CardRank, { nickname: string, color: string }> = {
-  J: { nickname: 'Le Valet', color: '#1D4ED8' },
-  Q: { nickname: 'La Reine', color: '#3B82F6' },
-  K: { nickname: 'Le Roi', color: '#60A5FA' },
-  A: { nickname: "L'As", color: '#3B82F6' },
-  Joker: { nickname: 'Le Joker', color: '#8B5CF6' },
+  J: { nickname: 'Le Valet', color: '#135135' },
+  Q: { nickname: 'La Reine', color: '#1e8255' },
+  K: { nickname: 'Le Roi', color: '#2eb875' },
+  A: { nickname: "L'As", color: '#1e8255' },
+  Joker: { nickname: 'Le Joker', color: '#ca8a04' },
 };
 
 export default function App() {
@@ -65,8 +65,8 @@ export default function App() {
       ctx.fillRect(0, 0, width, height);
 
       const glow = ctx.createRadialGradient(width / 2, height / 2, 100, width / 2, height / 2, 800);
-      // Joker uses a purple tint, others use blue
-      glow.addColorStop(0, cardRank === 'Joker' ? 'rgba(139, 92, 246, 0.4)' : 'rgba(29, 78, 216, 0.4)');
+      // Joker uses a gold tint, others use green
+      glow.addColorStop(0, cardRank === 'Joker' ? 'rgba(202, 138, 4, 0.4)' : 'rgba(19, 81, 53, 0.4)');
       glow.addColorStop(1, 'rgba(7, 7, 7, 1)');
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
@@ -213,13 +213,13 @@ export default function App() {
       ctx.textBaseline = 'middle';
       
       const titleGradient = ctx.createLinearGradient(cardX + cardW/2 - 300, 0, cardX + cardW/2 + 300, 0);
-      titleGradient.addColorStop(0, '#60A5FA');
-      titleGradient.addColorStop(1, '#1D4ED8');
+      titleGradient.addColorStop(0, '#2eb875');
+      titleGradient.addColorStop(1, '#135135');
       
       ctx.font = 'bold 72px "Space Grotesk"';
       if ('letterSpacing' in ctx) { (ctx as any).letterSpacing = '1px'; }
       ctx.fillStyle = titleGradient;
-      ctx.shadowColor = 'rgba(29, 78, 216, 0.5)';
+      ctx.shadowColor = 'rgba(19, 81, 53, 0.5)';
       ctx.shadowBlur = 20;
       ctx.shadowOffsetY = 4;
       
@@ -276,7 +276,7 @@ export default function App() {
       {/* Left Column: Form Controls */}
       <div className="w-full md:w-[420px] lg:w-[480px] shrink-0 border-b md:border-b-0 md:border-r border-[#1a1a1a] p-8 md:p-12 flex flex-col justify-center bg-[#070707] z-10 shadow-2xl overflow-y-auto">
         <div className="mb-10">
-          <div className="inline-flex items-center justify-center p-2 bg-blue-electric/10 text-blue-glow rounded-lg mb-4">
+          <div className="inline-flex items-center justify-center p-2 bg-green-electric/10 text-green-glow rounded-lg mb-4">
             <Sparkles className="w-6 h-6" />
           </div>
           <h1 className="font-display font-bold text-3xl mb-2 text-white/95">
@@ -302,12 +302,12 @@ export default function App() {
                 title="Choisir une photo"
               />
               <div className={`relative w-full h-36 border-2 border-dashed rounded-xl flex flex-col items-center justify-center transition-all duration-200 z-10
-                ${imageSrc ? 'border-blue-electric/50 bg-blue-electric/5' : 'border-gray-800 bg-[#0a0a0a] group-hover:border-gray-600 group-hover:bg-[#111]'}
+                ${imageSrc ? 'border-green-electric/50 bg-green-electric/5' : 'border-gray-800 bg-[#0a0a0a] group-hover:border-gray-600 group-hover:bg-[#111]'}
               `}>
                 {imageSrc ? (
                   <>
-                    <ImageIcon className="w-8 h-8 text-blue-glow mb-2" />
-                    <span className="text-sm font-medium text-blue-glow">Photo intégrée !</span>
+                    <ImageIcon className="w-8 h-8 text-green-glow mb-2" />
+                    <span className="text-sm font-medium text-green-glow">Photo intégrée !</span>
                     <span className="text-xs text-gray-500 mt-1">
                       Cliquer pour changer
                     </span>
@@ -335,7 +335,7 @@ export default function App() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Ex. Élise Dubois"
                 maxLength={20}
-                className="w-full bg-[#0a0a0a] border border-gray-800 text-white placeholder-gray-600 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-electric/50 focus:border-blue-electric/80 transition-all font-medium"
+                className="w-full bg-[#0a0a0a] border border-gray-800 text-white placeholder-gray-600 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-electric/50 focus:border-green-electric/80 transition-all font-medium"
               />
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function App() {
         <div className="pt-8 mt-8 border-t border-gray-800/50">
           <button
             onClick={handleDownload}
-            className="w-full bg-blue-electric hover:bg-blue-600 text-white font-semibold py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_30px_rgba(29,78,216,0.6)] transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full bg-green-electric hover:bg-[#1a6e48] text-white font-semibold py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(19,81,53,0.4)] hover:shadow-[0_0_30px_rgba(19,81,53,0.6)] transition-all duration-200 flex items-center justify-center gap-2"
           >
             <Download className="w-5 h-5" />
             <span>Télécharger ma carte</span>
@@ -355,7 +355,7 @@ export default function App() {
 
       {/* Right Column: Preview Area */}
       <div className="flex-1 bg-[#050505] flex items-center justify-center p-8 md:p-12 relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(30, 58, 138, 0.15) 0%, transparent 60%)' }}></div>
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(19, 81, 53, 0.15) 0%, transparent 60%)' }}></div>
         
         {/* Realtime Canvas Frame */}
         <div className="relative w-full max-w-[600px] aspect-square mx-auto shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
@@ -363,7 +363,7 @@ export default function App() {
             ref={canvasRef}
             width={1080}
             height={1080}
-            className="w-full h-full object-contain block transform rounded-xl ring-1 ring-white/10 shadow-[0_0_80px_rgba(30,58,138,0.3)]"
+            className="w-full h-full object-contain block transform rounded-xl ring-1 ring-white/10 shadow-[0_0_80px_rgba(19,81,53,0.3)]"
           />
         </div>
       </div>
